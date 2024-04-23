@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SimplefyList</string>
+
+    <!-- User Interface Related Strings -->
+    <string name="title_app_bar">"Shopping Lists"</string>
+    <string name="content_description_icon_add_lista_de_compras">"Add new Shopping List"</string>
+    <string name="abc_sem_lista_de_compras">"You don't have any registered lists yet"</string>
+    <string name="abc_clique_abaixo_para_criar_lista">"Click the button below to create your first list"</string>
+    <string name="title_cadastro_produto">"Product Registration"</string>
+
+    <!-- Labels -->
+    <string name="label_produto">"Product"</string>
+    <string name="label_quantidade">"Quantity"</string>
+    <string name="label_categoria">"Category"</string>
+    <string name="label_preco">"Price($)"</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_produto">"Product name"</string>
+    <string name="placeholder_quantidade">"Product quantity"</string>
+    <string name="placeholder_categoria">"Product category"</string>
+    <string name="placeholder_preco">"Product Price"</string>
+
+    <!-- Button -->
+    <string name="btn_text_salvar_produto">"Save and Add to List"</string>
+</resources>
