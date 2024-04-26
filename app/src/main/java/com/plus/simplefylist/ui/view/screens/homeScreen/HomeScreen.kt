@@ -73,24 +73,27 @@ fun HomeScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(16.dp),
-                    )
+                )
             )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 showAlertDialog = true
             }) {
-                Icon(Icons.Default.Add, contentDescription = stringResource(id = R.string.content_description_icon_add_lista_de_compras))
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = stringResource(id = R.string.content_description_icon_add_lista_de_compras)
+                )
             }
         },
-        containerColor = MaterialTheme.colorScheme.secondaryContainer
 
-    ) { innerPadding ->
+        ) { innerPadding ->
         Column(
             Modifier
                 .padding(innerPadding)
-                .fillMaxSize()) {
-            LazyColumn {
+                .fillMaxSize()
+        ) {
+            LazyColumn(modifier = Modifier.padding(horizontal = 10.dp, vertical = 16.dp)) {
                 if (allLists.isNotEmpty()) {
                     items(allLists) { list ->
                         ListCardComposable(listName = list.listName,
@@ -108,24 +111,24 @@ fun HomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.abc_sem_lista_de_compras),
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-
-                        )
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_layers_clear_24),
+                        painter = painterResource(id = R.drawable.no_lists),
                         contentDescription = null,
                         modifier = Modifier
                             .size(250.dp)
                             .alpha(0.5f)
                     )
                     Text(
+                        text = stringResource(id = R.string.abc_sem_lista_de_compras),
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Center,
+
+                        )
+                    Text(
                         text = stringResource(id = R.string.abc_clique_abaixo_para_criar_lista),
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(16.dp)
                     )

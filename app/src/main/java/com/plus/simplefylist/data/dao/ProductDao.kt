@@ -36,6 +36,6 @@ interface ProductDao {
     @Query("SELECT * FROM product WHERE is_checked = 1 AND list_id =:listId")
      fun productsCheck(listId: String): Flow<List<ProductEntity>>
 
-    // adicionar outras consultas conforme necessário...
+
 
 }

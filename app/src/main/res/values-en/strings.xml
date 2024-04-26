@@ -5,6 +5,8 @@
     <string name="title_app_bar">"Shopping Lists"</string>
     <string name="content_description_icon_add_lista_de_compras">"Add new Shopping List"</string>
     <string name="abc_sem_lista_de_compras">"You don't have any registered lists yet"</string>
+    <string name="abc_sem_produtos_na_lista">"It's kind of empty here!"</string>
+    <string name="abc_clique_abaixo_para_adicionar_um_produto">"Click the button below to add a new product"</string>
     <string name="abc_clique_abaixo_para_criar_lista">"Click the button below to create your first list"</string>
     <string name="title_cadastro_produto">"Product Registration"</string>
 

@@ -6,6 +6,8 @@
     <string name="title_app_bar">"Listas de Compras"</string>
     <string name="content_description_icon_add_lista_de_compras">"Adicionar nova Lista de Compras"</string>
     <string name="abc_sem_lista_de_compras">"Você ainda não tem listas cadastradas"</string>
+    <string name="abc_sem_produtos_na_lista">"Está meio vazio aqui!</string>
+    <string name="abc_clique_abaixo_para_adicionar_um_produto">"Clique no botão abaixo para adicionar um novo produto"</string>
     <string name="abc_clique_abaixo_para_criar_lista">"Clique no botão abaixo para criar sua primeira lista"</string>
     <string name="title_cadastro_produto">"Cadastro de Produto"</string>
 

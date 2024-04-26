@@ -2,7 +2,9 @@ package com.plus.simplefylist.ui.view.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.plus.simplefylist.data.dao.ListDao
+import com.plus.simplefylist.data.dao.ProductDao
 import com.plus.simplefylist.data.entities.ListEntity
+import com.plus.simplefylist.data.entities.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
 class HomeScreenViewModel(private val listDao: ListDao) : ViewModel() {
@@ -17,5 +19,4 @@ class HomeScreenViewModel(private val listDao: ListDao) : ViewModel() {
             null
         }
     }
-
 }

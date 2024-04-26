@@ -16,16 +16,20 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.plus.simplefylist.data.entities.ProductEntity
+import com.plus.simplefylist.ui.composables.ProgressBarr
 
 
 @Composable
 fun ListCardComposable(
     listName: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+
 ) {
 
     ElevatedCard(
@@ -60,7 +64,6 @@ fun ListCardComposable(
                     fontSize = 16.sp
                 )
                 Spacer(modifier = Modifier.padding(5.dp))
-
             }
         }
     }
