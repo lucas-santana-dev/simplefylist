@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -25,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -102,7 +104,10 @@ fun CadastroProdutoBottomModalComposable(
                         .padding(end = 5.dp),
                     label = { Text(text = stringResource(id = R.string.label_produto)) },
                     placeholder = {
-                        Text(text = stringResource(id = R.string.placeholder_produto))
+                        Text(
+                            text = stringResource(id = R.string.placeholder_produto), maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     },
 
                     value = nomeProduto,
@@ -120,12 +125,18 @@ fun CadastroProdutoBottomModalComposable(
                         Text(text = stringResource(id = R.string.label_quantidade))
                     },
                     placeholder = {
-                        Text(text = stringResource(id = R.string.placeholder_quantidade))
+                        Text(
+                            text = stringResource(id = R.string.placeholder_quantidade),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     },
                     value = quantidade,
                     onValueChange = { newQuantidade ->
                         quantidade = newQuantidade
-                    }
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.NumberPassword)
+
                 )
             }
             Row(
@@ -141,7 +152,11 @@ fun CadastroProdutoBottomModalComposable(
                         Text(text = stringResource(id = R.string.label_categoria))
                     },
                     placeholder = {
-                        Text(text = stringResource(id = R.string.placeholder_categoria))
+                        Text(
+                            text = stringResource(id = R.string.placeholder_categoria),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     },
                     value = categoria,
                     onValueChange = { newCategoria ->
@@ -152,14 +167,17 @@ fun CadastroProdutoBottomModalComposable(
                     modifier = Modifier.weight(1f),
                     label = { Text(text = stringResource(id = R.string.label_preco)) },
                     placeholder = {
-                        Text(text = stringResource(id = R.string.placeholder_preco),
+                        Text(
+                            text = stringResource(id = R.string.placeholder_preco),
                             maxLines = 1,
-                            overflow = TextOverflow.Ellipsis)
+                            overflow = TextOverflow.Ellipsis
+                        )
                     },
                     value = preco,
                     onValueChange = { newPreco ->
                         preco = newPreco
-                    }
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
                 )
             }
             Row(
