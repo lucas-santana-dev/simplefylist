@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.plus.simplefylist.AnimatedSplashScreen
 import com.plus.simplefylist.ui.view.screens.homeScreen.HomeScreen
 import com.plus.simplefylist.ui.view.screens.productListScreen.ProductListScreen
 
@@ -14,7 +15,7 @@ fun SimplefyListNavHost(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = AppDestination.HomeScreen.route
+        startDestination = AppDestination.SplashScreen.route
     ) {
         composable(
             AppDestination.HomeScreen.route
@@ -34,6 +35,16 @@ fun SimplefyListNavHost(navController: NavHostController) {
                 listId = id ?: "",
                 onNavgationToBack = {
                     navController.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            AppDestination.SplashScreen.route
+        ){
+            AnimatedSplashScreen(
+                navigateToNextScreen = {
+                    navController.navigate(AppDestination.HomeScreen.route)
                 }
             )
         }
