@@ -1,7 +1,7 @@
 <div align="center">
 
 # SimplefyList
-![SimplefyList Banner](link-para-a-imagem/banner.png)
+![SimplefyList Banner]([link-para-a-imagem/banner.png](https://github.com/lucas-santana-dev/simplefylist/blob/main/Sem%20Título-1.png))
 
 ## Descrição
 O SimplefyList é um aplicativo móvel desenvolvido em Kotlin utilizando Jetpack Compose. Ele oferece uma maneira simples e intuitiva de criar e gerenciar listas de compras no seu dispositivo Android. Este projeto foi criado como parte do meu aprendizado e experiência em desenvolvimento mobile.
