@@ -72,6 +72,8 @@ dependencies {
     val koin_version = "3.5.0"
     implementation( "io.insert-koin:koin-androidx-compose:$koin_version")
 
+    //----Google Fonts ----
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.6")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

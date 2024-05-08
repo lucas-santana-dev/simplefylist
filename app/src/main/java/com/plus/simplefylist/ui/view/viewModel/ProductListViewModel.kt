@@ -53,5 +53,12 @@ class ProductListViewModel(private val listDao: ListDao, private val productDao:
         }
     }
 
+    suspend fun deleteProduct(productId: String){
+        val product = productDao.getProductById(productId).firstOrNull()
+        product?.let {
+            productDao.delete(it)
+        }
+    }
+
 
 }

@@ -2,7 +2,9 @@ package com.plus.simplefylist.ui.view.screens.productListScreen
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -25,8 +27,11 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -38,6 +43,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import com.plus.simplefylist.R
 import com.plus.simplefylist.data.entities.ProductEntity
+import com.plus.simplefylist.ui.composables.AlertDialogConfirmacao
 import com.plus.simplefylist.ui.composables.ProgressBarr
 import com.plus.simplefylist.ui.view.viewModel.ProductListViewModel
 import kotlinx.coroutines.launch
@@ -79,47 +86,54 @@ fun ProductListScreen(
     } else {
         0f
     }
+    var showAlertDialog by remember {
+        mutableStateOf(
+            false
+        )
+    }
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-
+            TopAppBar(
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(MaterialTheme.colorScheme.primary),
                 title = {
                     Column(
-                        modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max),
-                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.padding(10.dp),
+                        verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+
                         Text(
                             text = list?.listName ?: "Lista",
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(10.dp)
+                            color = Color.White
                         )
-                        ProgressBarr(progress, productsChecked, listProduct)
-                        Spacer(modifier = Modifier.padding(5.dp))
+
                     }
                 },
+
                 navigationIcon = {
                     IconButton(onClick = { onNavgationToBack() }) {
                         Icon(
                             Icons.Filled.ArrowBack,
-                            contentDescription = "Voltar a tela anterior"
+                            contentDescription = "Voltar a tela anterior",
+                            tint = Color.White
                         )
 
                     }
                 },
                 actions = {
                     IconButton(onClick = {
-                        viewModel.viewModelScope.launch {
-                            viewModel.deleteList(listId)
-                            viewModel.deleteProducts(listId)
-                        }
 
-                        onNavgationToBack()
+                        showAlertDialog = true
+
+
                     }) {
                         Icon(
                             Icons.Filled.Delete,
-                            contentDescription = "Deletar Lista"
+                            contentDescription = "Deletar Lista",
+                            tint = Color.White
+
                         )
 
                     }
@@ -127,18 +141,22 @@ fun ProductListScreen(
             )
         },
         bottomBar = {
-            BottomAppBar {
-                Row(horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth()){
-                    Text(text = "Total da compra: R$ $formattedTotal")
+            BottomAppBar(containerColor = MaterialTheme.colorScheme.primary) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Total da compra: R$ $formattedTotal", color = Color.White)
 
                 }
+
             }
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                text = { Text("Adicionar Produtos") },
-                icon = { Icon(Icons.Filled.Add, contentDescription = list?.listName) },
+                containerColor = MaterialTheme.colorScheme.primary,
+                text = { Text("Adicionar Produtos", color = Color.White) },
+                icon = { Icon(Icons.Filled.Add, contentDescription = list?.listName, tint = Color.White) },
                 onClick = {
                     showBottomSheet = true
 
@@ -152,12 +170,25 @@ fun ProductListScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            LazyColumn(modifier = Modifier.padding(horizontal = 10.dp, vertical = 16.dp)) {
+            Row(
+
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primary)
+                    .fillMaxWidth(),
+            ) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)) {
+                    ProgressBarr(progress, productsChecked, listProduct)
+                }
+                Spacer(modifier = Modifier.padding(5.dp))
+            }
+            LazyColumn(modifier = Modifier.padding(top = 10.dp, start = 10.dp, end = 10.dp)) {
 
                 if (listProduct.value.isNotEmpty()) {
                     items(listProduct.value) { list ->
                         list.productCategory?.let {
-
                             ProductCardComposable(
                                 productName = list.productName,
                                 productCategory = it,
@@ -178,12 +209,17 @@ fun ProductListScreen(
 
                                     }
 
+                                },
+                                onClickMenu = {
+                                    viewModel.viewModelScope.launch {
+                                        viewModel.deleteProduct(list.id)
+                                    }
                                 }
                             )
                         }
                     }
-                }else{
-                    item{
+                } else {
+                    item {
                         Column(
                             Modifier
                                 .fillMaxSize()
@@ -216,6 +252,9 @@ fun ProductListScreen(
                         }
                     }
                 }
+                item {
+                    Spacer(modifier = Modifier.height(65.dp))
+                }
             }
         }
         if (showBottomSheet) {
@@ -228,7 +267,23 @@ fun ProductListScreen(
                 productId = productId.ifEmpty { null }
             )
         }
+        AlertDialogConfirmacao(
+            isVisible = showAlertDialog,
+            onCancel = {
+                showAlertDialog = false
+            },
+            onConfirm = {
+                viewModel.viewModelScope.launch {
+                    viewModel.deleteList(listId)
+                    viewModel.deleteProducts(listId)
+                }
+                onNavgationToBack()
+
+                showAlertDialog = false
+            }
+        )
 
     }
 }
+
 

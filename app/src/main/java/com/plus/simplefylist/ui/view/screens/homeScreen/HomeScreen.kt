@@ -2,18 +2,16 @@ package com.plus.simplefylist.ui.view.screens.homeScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -21,9 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,6 +29,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -67,22 +66,36 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.title_app_bar))
+                   Box(modifier = Modifier.size(150.dp)){
+                       Image(
+                           painter = painterResource(id = R.drawable.simplefy_logo),
+                           contentDescription = null,
+                           colorFilter = ColorFilter.tint(Color.White),
+                           contentScale = ContentScale.Fit,
+
+
+                       )
+                   }
+
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(16.dp),
+                    containerColor = MaterialTheme.colorScheme.primary,
                 )
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = {
-                showAlertDialog = true
-            }) {
+            FloatingActionButton(
+                onClick = {
+                    showAlertDialog = true
+                },
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
                 Icon(
                     Icons.Default.Add,
-                    contentDescription = stringResource(id = R.string.content_description_icon_add_lista_de_compras)
+                    contentDescription = stringResource(id = R.string.content_description_icon_add_lista_de_compras),
+                    tint = Color.White
                 )
             }
         },

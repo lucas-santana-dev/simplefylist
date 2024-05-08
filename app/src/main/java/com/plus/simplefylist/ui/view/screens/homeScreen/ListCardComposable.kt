@@ -18,7 +18,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plus.simplefylist.data.entities.ProductEntity
@@ -38,7 +40,7 @@ fun ListCardComposable(
             .height(100.dp)
             .clickable { onClick() },
         colors = CardDefaults.cardColors(
-            MaterialTheme.colorScheme.primaryContainer
+            MaterialTheme.colorScheme.secondary
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -61,7 +63,8 @@ fun ListCardComposable(
                 Text(
                     text = listName,
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = Color.DarkGray
                 )
                 Spacer(modifier = Modifier.padding(5.dp))
             }
@@ -71,3 +74,11 @@ fun ListCardComposable(
 
 }
 
+@Preview
+@Composable
+fun ListCardPreview() {
+    ListCardComposable(
+        listName = "Minha Lista",
+        onClick = {}
+    )
+}
