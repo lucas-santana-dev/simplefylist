@@ -1,7 +1,8 @@
 <div align="center">
 
 # SimplefyList
-![SimplefyList Banner]([link-para-a-imagem/banner.png](https://github.com/lucas-santana-dev/simplefylist/blob/main/Sem%20Título-1.png))
+<img src="https://github.com/lucas-santana-dev/simplefylist/blob/main/logo.svg" alt="SimplefyList Banner" width="300">
+
 
 ## Descrição
 O SimplefyList é um aplicativo móvel desenvolvido em Kotlin utilizando Jetpack Compose. Ele oferece uma maneira simples e intuitiva de criar e gerenciar listas de compras no seu dispositivo Android. Este projeto foi criado como parte do meu aprendizado e experiência em desenvolvimento mobile.
@@ -22,15 +23,9 @@ O SimplefyList é um aplicativo móvel desenvolvido em Kotlin utilizando Jetpack
 2. Abra o projeto utilizando o Android Studio.
 3. Execute o aplicativo em um dispositivo Android ou emulador.
 
-## Capturas de Tela
-<p float="left">
-  <img src="link-para-a-imagem/screenshot1.png" width="200" />
-  <img src="link-para-a-imagem/screenshot2.png" width="200" /> 
-  <img src="link-para-a-imagem/screenshot3.png" width="200" />
-</p>
 
 ## Autor
-Nome: [Seu Nome]
-Contato: [Seu Email]
+Nome: Lucas Santana |
+Linkedin: https://www.linkedin.com/in/lucas-santana-lc/
 
 </div>
